@@ -1,7 +1,7 @@
 // ==================== CANVAS CURSOR (Cursify-style) ====================
 
 (function initCanvasCursor() {
-  if (window.innerWidth <= 768) return; // skip on mobile
+  if (window.innerWidth <= 768) return;
 
   const canvas = document.getElementById('cursorCanvas');
   if (!canvas) return;
@@ -15,40 +15,34 @@
   resize();
   window.addEventListener('resize', resize);
 
-  // Particle pool
   const particles = [];
-  const PARTICLE_COUNT = 35;
-  const TRAIL_DECAY    = 0.04;  // how fast each particle fades
-  const DOT_SIZE       = 4;     // max radius of trail dot
+  const PARTICLE_COUNT = 60;   // more particles = longer trail
+  const TRAIL_DECAY    = 0.022; // slower fade = more visible trail
+  const DOT_SIZE       = 8;    // bigger trail dots
 
   let mouse = { x: -200, y: -200 };
-  let isMoving = false;
-  let moveTimer;
 
-  // Dot cursor follower state
-  const dot = { x: -200, y: -200 };
+  const dot  = { x: -200, y: -200 };
   const ring = { x: -200, y: -200 };
 
   window.addEventListener('mousemove', (e) => {
     mouse.x = e.clientX;
     mouse.y = e.clientY;
-    isMoving = true;
-    clearTimeout(moveTimer);
-    moveTimer = setTimeout(() => { isMoving = false; }, 150);
 
-    // Spawn a new trail particle
-    particles.push({
-      x:     e.clientX,
-      y:     e.clientY,
-      alpha: 0.7,
-      size:  DOT_SIZE * (0.5 + Math.random() * 0.5),
-      vx:    (Math.random() - 0.5) * 0.8,
-      vy:    (Math.random() - 0.5) * 0.8,
-    });
+    // Spawn 2 particles per move for a denser trail
+    for (let i = 0; i < 2; i++) {
+      particles.push({
+        x:     e.clientX + (Math.random() - 0.5) * 4,
+        y:     e.clientY + (Math.random() - 0.5) * 4,
+        alpha: 0.85,
+        size:  DOT_SIZE * (0.4 + Math.random() * 0.6),
+        vx:    (Math.random() - 0.5) * 1.2,
+        vy:    (Math.random() - 0.5) * 1.2,
+      });
+    }
 
-    // Keep pool size bounded
     if (particles.length > PARTICLE_COUNT) {
-      particles.shift();
+      particles.splice(0, particles.length - PARTICLE_COUNT);
     }
   });
 
@@ -57,43 +51,46 @@
   function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Smooth dot follows cursor precisely
-    dot.x = lerp(dot.x, mouse.x, 0.9);
-    dot.y = lerp(dot.y, mouse.y, 0.9);
+    dot.x  = lerp(dot.x,  mouse.x, 0.92);
+    dot.y  = lerp(dot.y,  mouse.y, 0.92);
+    ring.x = lerp(ring.x, mouse.x, 0.10);
+    ring.y = lerp(ring.y, mouse.y, 0.10);
 
-    // Ring lags a little
-    ring.x = lerp(ring.x, mouse.x, 0.12);
-    ring.y = lerp(ring.y, mouse.y, 0.12);
-
-    // Draw trail particles
+    // Trail particles
     for (let i = particles.length - 1; i >= 0; i--) {
       const p = particles[i];
       p.alpha -= TRAIL_DECAY;
       p.x += p.vx;
       p.y += p.vy;
-      p.size *= 0.97;
+      p.vx *= 0.96;
+      p.vy *= 0.96;
+      p.size *= 0.985;
 
-      if (p.alpha <= 0) {
-        particles.splice(i, 1);
-        continue;
-      }
+      if (p.alpha <= 0) { particles.splice(i, 1); continue; }
 
       ctx.beginPath();
-      ctx.arc(p.x, p.y, Math.max(p.size, 0.1), 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha * 0.6})`;
+      ctx.arc(p.x, p.y, Math.max(p.size, 0.5), 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha})`;
       ctx.fill();
     }
 
-    // Draw outer ring
+    // Outer ring — bigger (38px) and more opaque
     ctx.beginPath();
-    ctx.arc(ring.x, ring.y, 18, 0, Math.PI * 2);
-    ctx.strokeStyle = `rgba(255, 255, 255, 0.35)`;
-    ctx.lineWidth = 1.5;
+    ctx.arc(ring.x, ring.y, 38, 0, Math.PI * 2);
+    ctx.strokeStyle = `rgba(255, 255, 255, 0.75)`;
+    ctx.lineWidth = 2;
     ctx.stroke();
 
-    // Draw inner solid dot
+    // Middle halo ring
     ctx.beginPath();
-    ctx.arc(dot.x, dot.y, 4, 0, Math.PI * 2);
+    ctx.arc(ring.x, ring.y, 24, 0, Math.PI * 2);
+    ctx.strokeStyle = `rgba(255, 255, 255, 0.20)`;
+    ctx.lineWidth = 1;
+    ctx.stroke();
+
+    // Inner solid dot — bigger (6px)
+    ctx.beginPath();
+    ctx.arc(dot.x, dot.y, 6, 0, Math.PI * 2);
     ctx.fillStyle = '#ffffff';
     ctx.fill();
 
@@ -295,7 +292,7 @@ function generateResumeHTML() {
 
 // ==================== CONTACT FORM — sends to Flask backend ====================
 // Flask backend URL — update this if you deploy to a server/different port
-const FLASK_API_URL = 'http://localhost:5000/send-email';
+const FLASK_API_URL = 'https://portfolio-deva-jeshurun.onrender.com/send-email';
 
 const contactForm = document.getElementById('contactForm');
 
