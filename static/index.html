@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Deva Jeshurun - Aspiring Java Developer & Computer Science Engineer Portfolio">
+  <title>Deva Jeshurun | Java Developer Portfolio</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Canvas Cursor Overlay -->
+  <canvas id="cursorCanvas"></canvas>
+
+  <!-- Mobile Navigation Toggle -->
+  <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#home" class="nav-logo">DJ</a>
+      
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#home" class="nav-link">Home</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#experience" class="nav-link">Experience</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+
+      <a href="#" class="resume-btn" id="downloadResume">
+        <i class="fas fa-download"></i> Resume
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero-section">
+    <div class="hero-background"></div>
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1 class="hero-title">
+          <span class="reveal-text">Hi, I'm</span>
+          <span class="hero-name reveal-text delay-1">Deva Jeshurun</span>
+        </h1>
+        <p class="hero-subtitle reveal-text delay-2">
+          Aspiring Java Developer | Backend Engineer | Problem Solver
+        </p>
+        <p class="hero-description reveal-text delay-3">
+          Building scalable backend systems and crafting elegant solutions to complex problems
+        </p>
+        <div class="hero-cta reveal-text delay-4">
+          <a href="#contact" class="btn-primary">Get In Touch</a>
+          <a href="#projects" class="btn-secondary">View Projects</a>
+        </div>
+      </div>
+      
+      <div class="hero-social reveal-text delay-5">
+        <a href="https://github.com/DevaJeshurun" target="_blank" class="social-link">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://linkedin.com/in/deva-jeshurun-aa493a306" target="_blank" class="social-link">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="https://leetcode.com/u/deva_jeshurun/" target="_blank" class="social-link">
+          <i class="fas fa-code"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="scroll-indicator">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about-section">
+    <div class="container">
+      <h2 class="section-title fade-in">About Me</h2>
+      
+      <div class="about-content">
+        <div class="about-text fade-in">
+          <p class="about-intro">
+            I am a passionate Computer Science Engineering student with a focus on Java Development, 
+            Backend Systems, and Full Stack Technologies. My journey in software development is driven 
+            by curiosity and a commitment to writing clean, efficient code.
+          </p>
+          
+          <div class="about-highlights">
+            <div class="highlight-item">
+              <i class="fas fa-graduation-cap"></i>
+              <div>
+                <h3>Education</h3>
+                <p>B.E in Computer Science Engineering</p>
+              </div>
+            </div>
+            
+            <div class="highlight-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <div>
+                <h3>Location</h3>
+                <p>Chennai, Tamil Nadu, India</p>
+              </div>
+            </div>
+            
+            <div class="highlight-item">
+              <i class="fas fa-briefcase"></i>
+              <div>
+                <h3>Experience</h3>
+                <p>Multiple Internships & Projects</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="skills-section">
+    <div class="container">
+      <h2 class="section-title fade-in">Technical Skills</h2>
+      
+      <div class="skills-grid">
+        <div class="skill-category fade-in">
+          <h3><i class="fas fa-code"></i> Languages</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Java</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">JavaScript</span>
+          </div>
+        </div>
+
+        <div class="skill-category fade-in">
+          <h3><i class="fas fa-globe"></i> Web Technologies</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">HTML5</span>
+            <span class="skill-tag">CSS3</span>
+            <span class="skill-tag">Flask</span>
+            <span class="skill-tag">Spring Boot</span>
+          </div>
+        </div>
+
+        <div class="skill-category fade-in">
+          <h3><i class="fas fa-database"></i> Databases</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">MySQL</span>
+            <span class="skill-tag">MongoDB</span>
+          </div>
+        </div>
+
+        <div class="skill-category fade-in">
+          <h3><i class="fas fa-tools"></i> Tools & Others</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">Flutter</span>
+            <span class="skill-tag">N8N</span>
+          </div>
+        </div>
+        <div class="skill-category fade-in">
+          <h3><i class="fas fa-laptop-code"></i> Platforms</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">VS Code</span>
+            <span class="skill-tag">Android Studio</span>
+            <span class="skill-tag">Heroku</span>
+            <span class="skill-tag">IntelliJ IDEA</span>
+            <span class="skill-tag">Eclipse</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="projects-section">
+    <div class="container">
+      <h2 class="section-title fade-in">Featured Projects</h2>
+      
+      <div class="projects-grid">
+        <div class="project-card fade-in">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&h=500&fit=crop" alt="Parallel Text Processing">
+            <div class="project-overlay">
+              <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+            </div>
+          </div>
+          <div class="project-content">
+            <h3>Parallel Text Handling Processor</h3>
+            <p>
+              Multi-threaded Python system for batch text processing with searchable storage 
+              and interactive analytics dashboard built with Streamlit.
+            </p>
+            <div class="project-tech">
+              <span>Python</span>
+              <span>Multithreading</span>
+              <span>Streamlit</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="project-card fade-in">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800&h=500&fit=crop" alt="NutriQuest App">
+            <div class="project-overlay">
+              <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+            </div>
+          </div>
+          <div class="project-content">
+            <h3>NutriQuest</h3>
+            <p>
+              Mobile nutrition tracking application featuring barcode scanning, API integration 
+              for nutritional data, and personalized health calculations with exercise recommendations.
+            </p>
+            <div class="project-tech">
+              <span>Flutter</span>
+              <span>JSON</span>
+              <span>API Integration</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card fade-in">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&h=500&fit=crop" alt="Currency Converter">
+            <div class="project-overlay">
+              <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+            </div>
+          </div>
+          <div class="project-content">
+            <h3>Currency Converter</h3>
+            <p>
+              Multi-threaded Python system for batch text processing with searchable storage 
+              and interactive analytics dashboard built with Streamlit.
+            </p>
+            <div class="project-tech">
+              <span>Python</span>
+              <span>Multithreading</span>
+              <span>Streamlit</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section id="experience" class="experience-section">
+    <div class="container">
+      <h2 class="section-title fade-in">Professional Experience</h2>
+      
+      <div class="timeline">
+         <div class="timeline-item fade-in">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <div class="timeline-date">Apr 2025 – Jun 2025</div>
+            <h3>MERN Full Stack Developer</h3>
+            <h4>Altruisty Innovation Pvt Ltd.</h4>
+            <p>
+              Developed responsive web modules with seamless REST API integration for smooth user experience.
+              Handled database operations and implemented complete full-stack workflows using modern MERN development practices.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item fade-in">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <div class="timeline-date">Jun 2025 – Jul 2025</div>
+            <h3>Python Full Stack Developer</h3>
+            <h4>Wibits Web Solutions LLP</h4>
+            <p>
+              Created responsive web modules with seamless API integration. Managed database operations 
+              and implemented full-stack workflows using modern development practices.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item fade-in">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <div class="timeline-date">Sep 2025 – Nov 2025</div>
+            <h3>Python Backend Developer Intern</h3>
+            <h4>Infosys</h4>
+            <p>
+              Developed backend logic systems utilizing multithreading for efficient processing. 
+              Implemented rule-based processing engines and text handling systems for large-scale data operations.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="certifications fade-in">
+        <h3>Certifications</h3>
+        <div class="cert-grid">
+          <div class="cert-item">
+            <i class="fas fa-certificate"></i>
+            <div>
+              <h4>Python Foundation Certification</h4>
+              <p>Infosys Springboard – 2025</p>
+            </div>
+          </div>
+          <div class="cert-item">
+            <i class="fas fa-certificate"></i>
+            <div>
+              <h4>Java Foundation Certification</h4>
+              <p>Infosys Springboard – 2026</p>
+            </div>
+          </div>
+          <div class="cert-item">
+            <i class="fas fa-certificate"></i>
+            <div>
+              <h4>Acquiring Data</h4>
+              <p>nasscom – 2023</p>
+            </div>
+          </div>
+          <div class="cert-item">
+            <i class="fas fa-certificate"></i>
+            <div>
+              <h4>Java Developer Certification</h4>
+              <p>Infosys Springboard – 2026</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact-section">
+    <div class="container">
+      <h2 class="section-title fade-in">Let's Connect</h2>
+      
+      <div class="contact-content">
+        <div class="contact-info fade-in">
+          <h3>Get In Touch</h3>
+          <p>
+            I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
+          </p>
+          
+          <div class="contact-details">
+            <div class="contact-item">
+              <i class="fas fa-envelope"></i>
+              <div>
+                <h4>Email</h4>
+                <a href="mailto:devajeshurun57@gmail.com">devajeshurun57@gmail.com</a>
+              </div>
+            </div>
+            
+            <div class="contact-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <div>
+                <h4>Location</h4>
+                <p>Chennai, Tamil Nadu, India</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="social-links">
+            <a href="https://github.com/DevaJeshurun" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/deva-jeshurun-aa493a306" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://leetcode.com/u/deva_jeshurun/" target="_blank"><i class="fas fa-code"></i></a>
+          </div>
+        </div>
+
+        <form class="contact-form fade-in" id="contactForm">
+          <div class="form-group">
+            <input type="text" id="name" name="name" placeholder="Your Name" required>
+          </div>
+          
+          <div class="form-group">
+            <input type="email" id="email" name="email" placeholder="Your Email" required>
+          </div>
+          
+          <div class="form-group">
+            <input type="text" id="subject" name="subject" placeholder="Subject" required>
+          </div>
+          
+          <div class="form-group">
+            <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+          </div>
+          
+          <button type="submit" class="submit-btn">
+            <span>Send Message</span>
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 Deva Jeshurun. Designed with passion.</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
