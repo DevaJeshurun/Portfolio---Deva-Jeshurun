@@ -323,12 +323,27 @@ contactForm.addEventListener('submit', async (e) => {
   submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
   submitBtn.disabled = true;
 
+  // Show a hint after 5s in case Render is waking up
+  const slowHintTimer = setTimeout(() => {
+    if (submitBtn.disabled) {
+      showNotification('Server is waking up, please wait a moment...', 'info');
+    }
+  }, 5000);
+
   try {
+    // AbortController gives us a manual timeout (60s for Render cold start)
+    const controller = new AbortController();
+    const timeoutId  = setTimeout(() => controller.abort(), 60000);
+
     const response = await fetch(FLASK_API_URL, {
-      method: 'POST',
+      method:  'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData),
+      body:    JSON.stringify(formData),
+      signal:  controller.signal,
     });
+
+    clearTimeout(timeoutId);
+    clearTimeout(slowHintTimer);
 
     const result = await response.json();
 
@@ -340,14 +355,17 @@ contactForm.addEventListener('submit', async (e) => {
       throw new Error(result.error || 'Server error');
     }
   } catch (error) {
+    clearTimeout(slowHintTimer);
     console.error('Error sending message:', error);
     submitBtn.innerHTML = '<i class="fas fa-times"></i> Error';
-    showNotification(
-      error.message.includes('fetch') 
-        ? 'Could not reach the server. Make sure the Flask backend is running.' 
-        : 'Something went wrong. Please try again.',
-      'error'
-    );
+
+    if (error.name === 'AbortError') {
+      showNotification('Request timed out. The server may be starting up — please try again in 30 seconds.', 'error');
+    } else if (error.message === 'Failed to fetch') {
+      showNotification('Could not reach the server. Please check your connection and try again.', 'error');
+    } else {
+      showNotification(`Error: ${error.message}. Please try again.`, 'error');
+    }
   } finally {
     setTimeout(() => {
       submitBtn.innerHTML = originalBtnContent;
