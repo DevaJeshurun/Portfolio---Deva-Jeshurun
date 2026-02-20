@@ -1,18 +1,3 @@
-"""
-Flask Email Backend for Deva Jeshurun's Portfolio
---------------------------------------------------
-Receives contact form submissions and forwards them to devajeshurun57@gmail.com
-
-Setup:
-1. pip install flask flask-mail flask-cors
-2. Set environment variables (see below) or replace inline for local testing
-3. python app.py
-
-Gmail App Password:
-  - Go to https://myaccount.google.com/apppasswords
-  - Generate an App Password for "Mail"
-  - Use that 16-char password as MAIL_PASSWORD
-"""
 
 import os
 from flask import Flask, request, jsonify
