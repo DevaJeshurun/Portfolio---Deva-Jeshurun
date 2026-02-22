@@ -227,60 +227,15 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-// ==================== RESUME DOWNLOAD ====================
-
 const downloadResumeBtn = document.getElementById('downloadResume');
 
 function triggerResumeDownload() {
   downloadResumeBtn && downloadResumeBtn.click();
 }
 
-downloadResumeBtn.addEventListener('click', async (e) => {
+downloadResumeBtn.addEventListener('click', (e) => {
   e.preventDefault();
-  const originalText = downloadResumeBtn.innerHTML;
-  downloadResumeBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Downloading...';
-  downloadResumeBtn.style.pointerEvents = 'none';
-
-  try {
-    const response = await fetch('/Professional_CV_Resume.pdf');
-    if (!response.ok) throw new Error('fetch failed');
-
-    const blob = await response.blob();
-    const url  = URL.createObjectURL(blob);
-    const a    = document.createElement('a');
-    a.href     = url;
-    a.download = 'Deva_Jeshurun_Resume.pdf';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-
-    downloadResumeBtn.innerHTML = '<i class="fas fa-check"></i> Downloaded!';
-  } catch (err) {
-    try {
-      const b64   = RESUME_B64;
-      const bytes = atob(b64);
-      const arr   = new Uint8Array(bytes.length);
-      for (let i = 0; i < bytes.length; i++) arr[i] = bytes.charCodeAt(i);
-      const blob  = new Blob([arr], { type: 'application/pdf' });
-      const url   = URL.createObjectURL(blob);
-      const a     = document.createElement('a');
-      a.href      = url;
-      a.download  = 'Deva_Jeshurun_Resume.pdf';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-      downloadResumeBtn.innerHTML = '<i class="fas fa-check"></i> Downloaded!';
-    } catch (e2) {
-      downloadResumeBtn.innerHTML = '<i class="fas fa-times"></i> Error';
-    }
-  } finally {
-    setTimeout(() => {
-      downloadResumeBtn.innerHTML = originalText;
-      downloadResumeBtn.style.pointerEvents = 'auto';
-    }, 2500);
-  }
+  window.open('https://drive.google.com/file/d/11_DeGaY9z71HpQHCNAZvxtjJE7Om14Wd/view?usp=drive_link', '_blank');
 });
 
 
