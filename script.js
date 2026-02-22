@@ -242,7 +242,7 @@ downloadResumeBtn.addEventListener('click', async (e) => {
   downloadResumeBtn.style.pointerEvents = 'none';
 
   try {
-    const response = await fetch('Professional_CV_Resume.pdf');
+    const response = await fetch('/Professional_CV_Resume.pdf');
     if (!response.ok) throw new Error('fetch failed');
 
     const blob = await response.blob();
