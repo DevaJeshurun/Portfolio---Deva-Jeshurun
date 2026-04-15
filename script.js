@@ -159,7 +159,7 @@
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', boot);
-  } else {
+  } else { 
     boot();
   }
 })();
@@ -235,7 +235,7 @@ function triggerResumeDownload() {
 
 downloadResumeBtn.addEventListener('click', (e) => {
   e.preventDefault();
-  window.open('https://drive.google.com/file/d/11_DeGaY9z71HpQHCNAZvxtjJE7Om14Wd/view?usp=drive_link', '_blank');
+  window.open('https://drive.google.com/file/d/1LOUWd9tibt6Ca7P_cuq4MtPXZCWU489R/view?usp=drive_link', '_blank');
 });
 
 
