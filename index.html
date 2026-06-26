@@ -3,59 +3,130 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Deva Jeshurun - Aspiring Java Developer & Computer Science Engineer Portfolio">
-  <title>Deva Jeshurun | Java Developer Portfolio</title>
+  <meta name="description" content="Deva Jeshurun — Java Full Stack Developer, AI Application Developer & Flutter Developer. Portfolio showcasing projects, experience, and technical skills.">
+  <meta name="keywords" content="Deva Jeshurun, Java Developer, Full Stack, Flutter, AI Developer, Portfolio, Chennai">
+  <meta name="author" content="Deva Jeshurun">
+  <meta property="og:title" content="Deva Jeshurun | Software Developer Portfolio">
+  <meta property="og:description" content="Java Full Stack Developer building scalable systems and elegant solutions.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#0a0a0f">
+  <title>Deva Jeshurun | Software Developer Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
+  <!-- Loading Screen -->
+  <div id="loader" class="loader" aria-hidden="true">
+    <div class="loader-inner">
+      <div class="loader-logo">DJ</div>
+      <div class="loader-bar"><div class="loader-progress"></div></div>
+      <p class="loader-text">Loading portfolio</p>
+    </div>
+  </div>
+
+  <!-- Scroll Progress -->
+  <div id="scrollProgress" class="scroll-progress" role="progressbar" aria-label="Scroll progress"></div>
+
+  <!-- Background Effects -->
+  <div class="bg-effects" aria-hidden="true">
+    <div class="bg-gradient"></div>
+    <div class="bg-grid"></div>
+    <div class="bg-noise"></div>
+    <canvas id="particles" class="particles-canvas"></canvas>
+  </div>
+
+  <!-- Mouse Spotlight -->
+  <div id="spotlight" class="spotlight" aria-hidden="true"></div>
+
   <!-- Canvas Cursor -->
   <canvas id="canvas" class="cursor-canvas"></canvas>
+
+  <!-- Custom Cursor -->
+  <div id="customCursor" class="custom-cursor" aria-hidden="true">
+    <div class="cursor-ring"></div>
+    <div class="cursor-dot"></div>
+  </div>
+
+  <!-- Command Palette -->
+  <div id="commandPalette" class="command-palette" role="dialog" aria-modal="true" aria-label="Command palette" hidden>
+    <div class="cmd-overlay"></div>
+    <div class="cmd-dialog">
+      <div class="cmd-header">
+        <i class="fas fa-search"></i>
+        <input type="text" id="cmdInput" placeholder="Search sections, projects, actions..." autocomplete="off" aria-label="Command search">
+        <kbd>ESC</kbd>
+      </div>
+      <ul id="cmdList" class="cmd-list"></ul>
+    </div>
+  </div>
 
   <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
     <span></span><span></span><span></span>
   </button>
 
-  <nav class="navbar" id="navbar">
+  <nav class="navbar glass" id="navbar">
     <div class="nav-container">
-      <a href="#home" class="nav-logo">DJ</a>
+      <a href="#home" class="nav-logo">DJ<span class="logo-dot">.</span></a>
       <ul class="nav-menu" id="navMenu">
         <li><a href="#home" class="nav-link">Home</a></li>
+        <li><a href="#resume" class="nav-link">Resume</a></li>
         <li><a href="#about" class="nav-link">About</a></li>
         <li><a href="#skills" class="nav-link">Skills</a></li>
         <li><a href="#projects" class="nav-link">Projects</a></li>
         <li><a href="#experience" class="nav-link">Experience</a></li>
+        <li><a href="#certificates" class="nav-link">Certificates</a></li>
         <li><a href="#contact" class="nav-link">Contact</a></li>
       </ul>
       <a href="#" class="resume-btn" id="downloadResume">
-        <i class="fas fa-download"></i> Resume
+        <i class="fas fa-file-pdf"></i> Resume
       </a>
     </div>
   </nav>
 
+  <!-- ==================== HERO ==================== -->
   <section id="home" class="hero-section">
-    <div class="hero-background"></div>
-    <div class="hero-content">
-      <div class="hero-text">
-        <h1 class="hero-title">
-          <span class="reveal-text">Hi, I'm</span>
-          <span class="hero-name reveal-text delay-1">Deva Jeshurun</span>
+    <div class="container hero-grid">
+      <div class="hero-left">
+        <p class="hero-greeting reveal-text"><span class="typing-cursor" id="typingText"></span></p>
+        <h1 class="hero-title reveal-text delay-1">
+          <span class="hero-name">Deva Jeshurun</span>
         </h1>
-        <p class="hero-subtitle reveal-text delay-2">Aspiring Java Developer | Backend Engineer | Problem Solver</p>
-        <p class="hero-description reveal-text delay-3">Building scalable backend systems and crafting elegant solutions to complex problems</p>
+        <div class="hero-roles reveal-text delay-2">
+          <span class="role-badge">Java Full Stack Developer</span>
+          <span class="role-badge">AI Application Developer</span>
+          <span class="role-badge">Flutter Developer</span>
+        </div>
+        <p class="hero-description reveal-text delay-3">
+          Building scalable backend systems and crafting elegant solutions to complex problems. Passionate about clean architecture, full-stack development, and AI-driven applications.
+        </p>
         <div class="hero-cta reveal-text delay-4">
-          <a href="#contact" class="btn-primary">Get In Touch</a>
-          <a href="#projects" class="btn-secondary">View Projects</a>
+          <a href="#" class="btn-primary" id="heroViewResume"><i class="fas fa-file-pdf"></i> View Resume</a>
+          <a href="#contact" class="btn-secondary"><i class="fas fa-envelope"></i> Contact Me</a>
+          <a href="#projects" class="btn-ghost"><i class="fas fa-folder-open"></i> View Projects</a>
+        </div>
+        <div class="hero-social reveal-text delay-5">
+          <a href="https://github.com/DevaJeshurun" target="_blank" rel="noopener" class="social-link" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://linkedin.com/in/deva-jeshurun-aa493a306" target="_blank" rel="noopener" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="https://leetcode.com/u/deva_jeshurun/" target="_blank" rel="noopener" class="social-link" aria-label="LeetCode"><i class="fas fa-code"></i></a>
+          <a href="https://www.geeksforgeeks.org/profile/devajeshurun?tab=activity" target="_blank" rel="noopener" class="social-link" aria-label="GeeksforGeeks"><i class="fas fa-laptop-code"></i></a>
         </div>
       </div>
-      <div class="hero-social reveal-text delay-5">
-        <a href="https://github.com/DevaJeshurun" target="_blank" class="social-link"><i class="fab fa-github"></i></a>
-        <a href="https://linkedin.com/in/deva-jeshurun-aa493a306" target="_blank" class="social-link"><i class="fab fa-linkedin"></i></a>
-        <a href="https://leetcode.com/u/deva_jeshurun/" target="_blank" class="social-link"><i class="fas fa-code"></i></a>
+
+      <div class="hero-right reveal-text delay-3">
+        <div class="profile-card glass" id="profileCard">
+          <div class="profile-photo-wrap profile-photo-hero">
+            <img src="profile.jpeg" alt="Deva Jeshurun — Professional Photo" class="profile-photo" loading="eager">
+            <div class="photo-glow"></div>
+          </div>
+          <div class="profile-card-footer">
+            <span class="status-dot"></span>
+            <span>Available for opportunities</span>
+          </div>
+        </div>
       </div>
     </div>
     <div class="scroll-indicator">
@@ -64,331 +135,566 @@
     </div>
   </section>
 
+  <!-- ==================== RESUME ==================== -->
+  <section id="resume" class="resume-section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Credentials</span>
+        <h2 class="section-title">Resume</h2>
+        <p class="section-subtitle">Professional summary, education, and career highlights</p>
+      </div>
+
+      <div class="resume-layout">
+        <div class="resume-preview-large glass fade-in">
+          <a href="#" class="resume-full-preview" id="resumeSectionPreview" aria-label="Open full resume PDF">
+            <img src="resume-preview.png" alt="Deva Jeshurun D C — Resume" class="resume-full-img" loading="lazy">
+          </a>
+        </div>
+
+        <div class="resume-sidebar fade-in">
+          <div class="resume-actions glass">
+            <a href="#" class="btn-primary full-width" id="viewResumeBtn"><i class="fas fa-eye"></i> View Resume</a>
+            <a href="#" class="btn-secondary full-width" id="downloadResumeBtn"><i class="fas fa-download"></i> Download Resume</a>
+          </div>
+
+          <div class="resume-timeline glass">
+            <h3><i class="fas fa-graduation-cap"></i> Education</h3>
+            <div class="edu-item">
+              <div class="edu-dot"></div>
+              <div>
+                <h4>B.E Computer Science Engineering</h4>
+                <p>Chennai, Tamil Nadu, India</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="resume-stats glass">
+            <h3><i class="fas fa-chart-bar"></i> At a Glance</h3>
+            <div class="stat-row">
+              <span>Internships</span>
+              <strong class="counter" data-target="3">0</strong>
+            </div>
+            <div class="stat-row">
+              <span>Projects</span>
+              <strong class="counter" data-target="5">0</strong>
+            </div>
+            <div class="stat-row">
+              <span>Certifications</span>
+              <strong class="counter" data-target="6">0</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ABOUT ==================== -->
   <section id="about" class="about-section">
     <div class="container">
-      <h2 class="section-title fade-in">About Me</h2>
-      <div class="about-content">
-        <div class="about-text fade-in">
+      <div class="section-header fade-in">
+        <span class="section-label">Introduction</span>
+        <h2 class="section-title">About Me</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-main glass fade-in">
           <p class="about-intro">I am a passionate Computer Science Engineering student with a focus on Java Development, Backend Systems, and Full Stack Technologies. My journey in software development is driven by curiosity and a commitment to writing clean, efficient code.</p>
-          <div class="about-highlights">
-            <div class="highlight-item">
-              <i class="fas fa-graduation-cap"></i>
-              <div><h3>Education</h3><p>B.E in Computer Science Engineering</p></div>
-            </div>
-            <div class="highlight-item">
-              <i class="fas fa-map-marker-alt"></i>
-              <div><h3>Location</h3><p>Chennai, Tamil Nadu, India</p></div>
-            </div>
-            <div class="highlight-item">
-              <i class="fas fa-briefcase"></i>
-              <div><h3>Experience</h3><p>Multiple Internships & Projects</p></div>
-            </div>
+          <p class="about-text">I thrive at the intersection of backend engineering, mobile development with Flutter, and AI-powered applications — always seeking to build software that is both robust and thoughtfully designed.</p>
+        </div>
+        <div class="about-cards">
+          <div class="about-card glass fade-in">
+            <div class="about-card-icon"><i class="fas fa-user"></i></div>
+            <h3>Who I Am</h3>
+            <p>A dedicated developer and CS engineering student based in Chennai, focused on building real-world applications through internships and personal projects.</p>
+          </div>
+          <div class="about-card glass fade-in">
+            <div class="about-card-icon"><i class="fas fa-heart"></i></div>
+            <h3>Interests</h3>
+            <p>Backend architecture, AI mentoring platforms, mobile health apps, competitive programming, and exploring new frameworks.</p>
+          </div>
+          <div class="about-card glass fade-in">
+            <div class="about-card-icon"><i class="fas fa-rocket"></i></div>
+            <h3>Career Goals</h3>
+            <p>Securing a software engineering role at a product-focused company where I can grow as a full-stack developer and contribute to impactful systems.</p>
+          </div>
+          <div class="about-card glass fade-in">
+            <div class="about-card-icon"><i class="fas fa-layer-group"></i></div>
+            <h3>Technologies</h3>
+            <p>Java, Spring Boot, Python, Flutter, React, Node.js, MongoDB, MySQL, Docker, and modern API-driven architectures.</p>
+          </div>
+          <div class="about-card glass fade-in">
+            <div class="about-card-icon"><i class="fas fa-code-branch"></i></div>
+            <h3>Development Philosophy</h3>
+            <p>Write clean, maintainable code. Prioritize scalability and user experience. Learn continuously and ship with purpose.</p>
+          </div>
+          <div class="about-card glass fade-in">
+            <div class="about-card-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <h3>Location</h3>
+            <p>Chennai, Tamil Nadu, India — open to on-site, remote, hybrid, and relocation opportunities.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ==================== SKILLS ==================== -->
   <section id="skills" class="skills-section">
     <div class="container">
-      <h2 class="section-title fade-in">Technical Skills</h2>
-      <div class="skills-grid">
-        <div class="skill-category fade-in">
-          <h3><i class="fas fa-code"></i> Languages</h3>
-          <div class="skill-tags">
-            <span class="skill-tag">Java</span><span class="skill-tag">Python</span><span class="skill-tag">JavaScript</span>
+      <div class="section-header fade-in">
+        <span class="section-label">Expertise</span>
+        <h2 class="section-title">Technical Skills</h2>
+      </div>
+      <div class="skills-categories">
+
+        <div class="skill-card glass fade-in" data-category="languages">
+          <div class="skill-card-header"><i class="fab fa-java"></i><h3>Languages</h3></div>
+          <div class="skill-bars">
+            <div class="skill-bar-item"><span>Java</span><div class="bar-track"><div class="bar-fill" data-level="90"></div></div></div>
+            <div class="skill-bar-item"><span>Python</span><div class="bar-track"><div class="bar-fill" data-level="85"></div></div></div>
+            <div class="skill-bar-item"><span>JavaScript</span><div class="bar-track"><div class="bar-fill" data-level="80"></div></div></div>
           </div>
         </div>
-        <div class="skill-category fade-in">
-          <h3><i class="fas fa-globe"></i> Web Technologies</h3>
-          <div class="skill-tags">
-            <span class="skill-tag">HTML5</span><span class="skill-tag">CSS3</span><span class="skill-tag">Flask</span><span class="skill-tag">Spring Boot</span>
+
+        <div class="skill-card glass fade-in" data-category="frameworks">
+          <div class="skill-card-header"><i class="fas fa-cubes"></i><h3>Frameworks</h3></div>
+          <div class="skill-bars">
+            <div class="skill-bar-item"><span>Spring Boot</span><div class="bar-track"><div class="bar-fill" data-level="85"></div></div></div>
+            <div class="skill-bar-item"><span>Flask</span><div class="bar-track"><div class="bar-fill" data-level="75"></div></div></div>
+            <div class="skill-bar-item"><span>Flutter</span><div class="bar-track"><div class="bar-fill" data-level="80"></div></div></div>
           </div>
         </div>
-        <div class="skill-category fade-in">
-          <h3><i class="fas fa-database"></i> Databases</h3>
-          <div class="skill-tags">
-            <span class="skill-tag">MySQL</span><span class="skill-tag">MongoDB</span>
+
+        <div class="skill-card glass fade-in" data-category="backend">
+          <div class="skill-card-header"><i class="fas fa-server"></i><h3>Backend</h3></div>
+          <div class="skill-bars">
+            <div class="skill-bar-item"><span>REST APIs</span><div class="bar-track"><div class="bar-fill" data-level="88"></div></div></div>
+            <div class="skill-bar-item"><span>Node.js</span><div class="bar-track"><div class="bar-fill" data-level="78"></div></div></div>
+            <div class="skill-bar-item"><span>Socket.io</span><div class="bar-track"><div class="bar-fill" data-level="72"></div></div></div>
           </div>
         </div>
-        <div class="skill-category fade-in">
-          <h3><i class="fas fa-tools"></i> Tools & Others</h3>
-          <div class="skill-tags">
-            <span class="skill-tag">Docker</span><span class="skill-tag">Git</span><span class="skill-tag">Flutter</span><span class="skill-tag">N8N</span>
+
+        <div class="skill-card glass fade-in" data-category="frontend">
+          <div class="skill-card-header"><i class="fas fa-paint-brush"></i><h3>Frontend</h3></div>
+          <div class="skill-bars">
+            <div class="skill-bar-item"><span>HTML5 / CSS3</span><div class="bar-track"><div class="bar-fill" data-level="90"></div></div></div>
+            <div class="skill-bar-item"><span>React</span><div class="bar-track"><div class="bar-fill" data-level="80"></div></div></div>
+            <div class="skill-bar-item"><span>Streamlit</span><div class="bar-track"><div class="bar-fill" data-level="75"></div></div></div>
           </div>
         </div>
-        <div class="skill-category fade-in">
-          <h3><i class="fas fa-laptop-code"></i> Platforms</h3>
-          <div class="skill-tags">
-            <span class="skill-tag">VS Code</span><span class="skill-tag">Android Studio</span><span class="skill-tag">Heroku</span><span class="skill-tag">IntelliJ IDEA</span><span class="skill-tag">Eclipse</span>
+
+        <div class="skill-card glass fade-in" data-category="mobile">
+          <div class="skill-card-header"><i class="fas fa-mobile-alt"></i><h3>Mobile</h3></div>
+          <div class="skill-bars">
+            <div class="skill-bar-item"><span>Flutter</span><div class="bar-track"><div class="bar-fill" data-level="82"></div></div></div>
+            <div class="skill-bar-item"><span>Android Studio</span><div class="bar-track"><div class="bar-fill" data-level="75"></div></div></div>
           </div>
         </div>
+
+        <div class="skill-card glass fade-in" data-category="database">
+          <div class="skill-card-header"><i class="fas fa-database"></i><h3>Database</h3></div>
+          <div class="skill-bars">
+            <div class="skill-bar-item"><span>MySQL</span><div class="bar-track"><div class="bar-fill" data-level="85"></div></div></div>
+            <div class="skill-bar-item"><span>MongoDB</span><div class="bar-track"><div class="bar-fill" data-level="80"></div></div></div>
+            <div class="skill-bar-item"><span>SQLite</span><div class="bar-track"><div class="bar-fill" data-level="78"></div></div></div>
+          </div>
+        </div>
+
+        <div class="skill-card glass fade-in" data-category="ai">
+          <div class="skill-card-header"><i class="fas fa-brain"></i><h3>AI</h3></div>
+          <div class="skill-bars">
+            <div class="skill-bar-item"><span>AI Integration</span><div class="bar-track"><div class="bar-fill" data-level="78"></div></div></div>
+            <div class="skill-bar-item"><span>N8N Automation</span><div class="bar-track"><div class="bar-fill" data-level="70"></div></div></div>
+          </div>
+        </div>
+
+        <div class="skill-card glass fade-in" data-category="cloud">
+          <div class="skill-card-header"><i class="fas fa-cloud"></i><h3>Cloud</h3></div>
+          <div class="skill-bars">
+            <div class="skill-bar-item"><span>Heroku</span><div class="bar-track"><div class="bar-fill" data-level="70"></div></div></div>
+            <div class="skill-bar-item"><span>Docker</span><div class="bar-track"><div class="bar-fill" data-level="75"></div></div></div>
+          </div>
+        </div>
+
+        <div class="skill-card glass fade-in" data-category="tools">
+          <div class="skill-card-header"><i class="fas fa-tools"></i><h3>Tools</h3></div>
+          <div class="skill-tags-inline">
+            <span class="skill-tag">Git</span><span class="skill-tag">Docker</span><span class="skill-tag">VS Code</span>
+            <span class="skill-tag">IntelliJ IDEA</span><span class="skill-tag">Eclipse</span><span class="skill-tag">N8N</span>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
 
+
+  <!-- ==================== PROJECTS ==================== -->
   <section id="projects" class="projects-section">
     <div class="container">
-      <h2 class="section-title fade-in">Featured Projects</h2>
-      <div class="projects-grid">
+      <div class="section-header fade-in">
+        <span class="section-label">Work</span>
+        <h2 class="section-title">Featured Projects</h2>
+      </div>
 
-        <div class="project-card fade-in">
+      <div class="projects-toolbar fade-in">
+        <div class="search-box">
+          <i class="fas fa-search"></i>
+          <input type="text" id="projectSearch" placeholder="Search projects..." aria-label="Search projects">
+        </div>
+        <div class="filter-tags" id="projectFilters">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="python">Python</button>
+          <button class="filter-btn" data-filter="java">Java</button>
+          <button class="filter-btn" data-filter="flutter">Flutter</button>
+          <button class="filter-btn" data-filter="react">React</button>
+        </div>
+      </div>
+
+      <div class="projects-grid" id="projectsGrid">
+
+        <article class="project-card premium fade-in" data-tags="python" data-search="parallel text handling processor python multithreading streamlit">
+          <span class="featured-ribbon">Featured</span>
           <div class="project-image">
-            <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&h=500&fit=crop" alt="Parallel Text Processing">
+            <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&h=500&fit=crop" alt="Parallel Text Processing" loading="lazy">
             <div class="project-overlay">
-              <a href="https://github.com/DevaJeshurun/parallel-text-handling-processor" target="_blank" class="project-link"><i class="fab fa-github"></i></a>
+              <a href="https://github.com/DevaJeshurun/parallel-text-handling-processor" target="_blank" rel="noopener" class="overlay-btn" aria-label="GitHub"><i class="fab fa-github"></i></a>
             </div>
           </div>
           <div class="project-content">
-            <div class="project-header">
-              <h3>Parallel Text Handling Processor</h3>
-              <a href="https://github.com/DevaJeshurun/parallel-text-handling-processor" target="_blank" class="project-github-btn">
-                <i class="fab fa-github"></i> GitHub
-              </a>
-            </div>
+            <h3>Parallel Text Handling Processor</h3>
             <p>Multi-threaded Python system for batch text processing with searchable storage and interactive analytics dashboard built with Streamlit.</p>
+            <div class="project-meta">
+              <div class="meta-item"><i class="fas fa-code"></i><span>2.5k LOC</span></div>
+              <div class="meta-item"><i class="fas fa-clock"></i><span>3 weeks</span></div>
+              <div class="meta-item"><i class="fas fa-user"></i><span>Solo</span></div>
+              <div class="meta-item"><i class="fas fa-signal"></i><span>Advanced</span></div>
+              <div class="meta-item"><i class="fas fa-tag"></i><span>Backend</span></div>
+            </div>
             <div class="project-tech">
               <span>Python</span><span>Multithreading</span><span>Streamlit</span>
             </div>
+            <div class="project-actions">
+              <a href="https://github.com/DevaJeshurun/parallel-text-handling-processor" target="_blank" rel="noopener" class="proj-btn"><i class="fab fa-github"></i> GitHub</a>
+              <a href="https://github.com/DevaJeshurun/parallel-text-handling-processor" target="_blank" rel="noopener" class="proj-btn ghost"><i class="fas fa-book"></i> Case Study</a>
+            </div>
           </div>
-        </div>
+        </article>
 
-        <div class="project-card fade-in">
+        <article class="project-card premium fade-in" data-tags="flutter" data-search="nutriquest mobile nutrition tracking flutter">
+          <span class="featured-ribbon">Featured</span>
           <div class="project-image">
-            <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800&h=500&fit=crop" alt="NutriQuest App">
+            <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800&h=500&fit=crop" alt="NutriQuest App" loading="lazy">
             <div class="project-overlay">
-              <a href="https://github.com/DevaJeshurun/NutriQuest" target="_blank" class="project-link"><i class="fab fa-github"></i></a>
+              <a href="https://github.com/DevaJeshurun/NutriQuest" target="_blank" rel="noopener" class="overlay-btn" aria-label="GitHub"><i class="fab fa-github"></i></a>
             </div>
           </div>
           <div class="project-content">
-            <div class="project-header">
-              <h3>NutriQuest</h3>
-              <a href="https://github.com/DevaJeshurun/NutriQuest" target="_blank" class="project-github-btn">
-                <i class="fab fa-github"></i> GitHub
-              </a>
-            </div>
+            <h3>NutriQuest</h3>
             <p>Mobile nutrition tracking application featuring barcode scanning, API integration for nutritional data, and personalized health calculations with exercise recommendations.</p>
+            <div class="project-meta">
+              <div class="meta-item"><i class="fas fa-code"></i><span>3k LOC</span></div>
+              <div class="meta-item"><i class="fas fa-clock"></i><span>4 weeks</span></div>
+              <div class="meta-item"><i class="fas fa-user"></i><span>Solo</span></div>
+              <div class="meta-item"><i class="fas fa-signal"></i><span>Intermediate</span></div>
+              <div class="meta-item"><i class="fas fa-tag"></i><span>Mobile</span></div>
+            </div>
             <div class="project-tech">
               <span>Flutter</span><span>JSON</span><span>API Integration</span>
             </div>
+            <div class="project-actions">
+              <a href="https://github.com/DevaJeshurun/NutriQuest" target="_blank" rel="noopener" class="proj-btn"><i class="fab fa-github"></i> GitHub</a>
+              <a href="https://github.com/DevaJeshurun/NutriQuest" target="_blank" rel="noopener" class="proj-btn ghost"><i class="fas fa-book"></i> Case Study</a>
+            </div>
           </div>
-        </div>
+        </article>
 
-        <div class="project-card fade-in">
+        <article class="project-card premium fade-in" data-tags="java" data-search="currency converter spring boot java">
           <div class="project-image">
-            <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=500&fit=crop" alt="Currency Converter">
+            <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=500&fit=crop" alt="Currency Converter" loading="lazy">
             <div class="project-overlay">
-              <a href="https://github.com/DevaJeshurun/currency-converter-springboot" target="_blank" class="project-link"><i class="fab fa-github"></i></a>
+              <a href="https://github.com/DevaJeshurun/currency-converter-springboot" target="_blank" rel="noopener" class="overlay-btn" aria-label="GitHub"><i class="fab fa-github"></i></a>
             </div>
           </div>
           <div class="project-content">
-            <div class="project-header">
-              <h3>Currency Converter</h3>
-              <a href="https://github.com/DevaJeshurun/currency-converter-springboot" target="_blank" class="project-github-btn">
-                <i class="fab fa-github"></i> GitHub
-              </a>
-            </div>
+            <h3>Currency Converter</h3>
             <p>Real-time currency conversion with live exchange rates, multi-currency support, and a clean responsive interface for quick financial lookups.</p>
+            <div class="project-meta">
+              <div class="meta-item"><i class="fas fa-code"></i><span>1.2k LOC</span></div>
+              <div class="meta-item"><i class="fas fa-clock"></i><span>2 weeks</span></div>
+              <div class="meta-item"><i class="fas fa-user"></i><span>Solo</span></div>
+              <div class="meta-item"><i class="fas fa-signal"></i><span>Intermediate</span></div>
+              <div class="meta-item"><i class="fas fa-tag"></i><span>Full Stack</span></div>
+            </div>
             <div class="project-tech">
               <span>Java</span><span>API Integration</span><span>Spring Boot</span>
             </div>
+            <div class="project-actions">
+              <a href="https://github.com/DevaJeshurun/currency-converter-springboot" target="_blank" rel="noopener" class="proj-btn"><i class="fab fa-github"></i> GitHub</a>
+              <a href="https://github.com/DevaJeshurun/currency-converter-springboot" target="_blank" rel="noopener" class="proj-btn ghost"><i class="fas fa-book"></i> Case Study</a>
+            </div>
           </div>
-        </div>
+        </article>
 
-        <div class="project-card fade-in">
+        <article class="project-card premium fade-in" data-tags="java" data-search="luminescent ai mentor spring boot">
+          <span class="featured-ribbon">Featured</span>
           <div class="project-image">
-            <img src="https://www.medicaldevice-network.com/wp-content/uploads/sites/23/2023/03/shutterstock_1013684788.jpg" alt="Currency Converter">
+            <img src="https://www.medicaldevice-network.com/wp-content/uploads/sites/23/2023/03/shutterstock_1013684788.jpg" alt="Luminescent AI Mentor" loading="lazy">
             <div class="project-overlay">
-              <a href="https://github.com/DevaJeshurun/Luminescent-Mentor" target="_blank" class="project-link"><i class="fab fa-github"></i></a>
+              <a href="https://github.com/DevaJeshurun/Luminescent-Mentor" target="_blank" rel="noopener" class="overlay-btn" aria-label="GitHub"><i class="fab fa-github"></i></a>
             </div>
           </div>
           <div class="project-content">
-            <div class="project-header">
-              <h3>Luminescent AI Mentor</h3>
-              <a href="https://github.com/DevaJeshurun/Luminescent-Mentor" target="_blank" class="project-github-btn">
-                <i class="fab fa-github"></i> GitHub
-              </a>
-            </div>
+            <h3>Luminescent AI Mentor</h3>
             <p>Built Luminescent AI Mentor, an AI-driven mentoring platform with personalized guidance, progress tracking, smart recommendations, and real-time interactive support.</p>
+            <div class="project-meta">
+              <div class="meta-item"><i class="fas fa-code"></i><span>4k LOC</span></div>
+              <div class="meta-item"><i class="fas fa-clock"></i><span>6 weeks</span></div>
+              <div class="meta-item"><i class="fas fa-user"></i><span>Solo</span></div>
+              <div class="meta-item"><i class="fas fa-signal"></i><span>Advanced</span></div>
+              <div class="meta-item"><i class="fas fa-tag"></i><span>AI / Full Stack</span></div>
+            </div>
             <div class="project-tech">
               <span>Java</span><span>API Integration</span><span>Spring Boot</span><span>SQLite</span><span>JWT Authentication</span><span>JavaScript</span>
             </div>
+            <div class="project-actions">
+              <a href="https://github.com/DevaJeshurun/Luminescent-Mentor" target="_blank" rel="noopener" class="proj-btn"><i class="fab fa-github"></i> GitHub</a>
+              <a href="https://github.com/DevaJeshurun/Luminescent-Mentor" target="_blank" rel="noopener" class="proj-btn ghost"><i class="fas fa-book"></i> Case Study</a>
+            </div>
           </div>
-        </div>
+        </article>
 
-        <div class="project-card fade-in">
+        <article class="project-card premium fade-in" data-tags="react" data-search="convosphere chat application react socket.io mongodb">
           <div class="project-image">
-            <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&h=500&fit=crop" alt="ConvoSphere Chat App">
+            <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&h=500&fit=crop" alt="ConvoSphere Chat App" loading="lazy">
             <div class="project-overlay">
-              <a href="https://github.com/DevaJeshurun/ChatApplication" target="_blank" class="project-link"><i class="fab fa-github"></i></a>
+              <a href="https://github.com/DevaJeshurun/ChatApplication" target="_blank" rel="noopener" class="overlay-btn" aria-label="GitHub"><i class="fab fa-github"></i></a>
             </div>
           </div>
           <div class="project-content">
-            <div class="project-header">
-              <h3>ConvoSphere - Chat Application</h3>
-              <a href="https://github.com/DevaJeshurun/ChatApplication" target="_blank" class="project-github-btn">
-                <i class="fab fa-github"></i> GitHub
-              </a>
-            </div>
+            <h3>ConvoSphere - Chat Application</h3>
             <p>Real-time chat application built with Socket.io, React, Node and MongoDB for concurrent user interactions and message handling.</p>
+            <div class="project-meta">
+              <div class="meta-item"><i class="fas fa-code"></i><span>2.8k LOC</span></div>
+              <div class="meta-item"><i class="fas fa-clock"></i><span>3 weeks</span></div>
+              <div class="meta-item"><i class="fas fa-user"></i><span>Solo</span></div>
+              <div class="meta-item"><i class="fas fa-signal"></i><span>Advanced</span></div>
+              <div class="meta-item"><i class="fas fa-tag"></i><span>Full Stack</span></div>
+            </div>
             <div class="project-tech">
               <span>React</span><span>Socket.io</span><span>MongoDB</span>
             </div>
+            <div class="project-actions">
+              <a href="https://github.com/DevaJeshurun/ChatApplication" target="_blank" rel="noopener" class="proj-btn"><i class="fab fa-github"></i> GitHub</a>
+              <a href="https://github.com/DevaJeshurun/ChatApplication" target="_blank" rel="noopener" class="proj-btn ghost"><i class="fas fa-book"></i> Case Study</a>
+            </div>
           </div>
-        </div>
+        </article>
 
       </div>
     </div>
   </section>
 
+  <!-- ==================== EXPERIENCE ==================== -->
   <section id="experience" class="experience-section">
     <div class="container">
-      <h2 class="section-title fade-in">Professional Experience</h2>
+      <div class="section-header fade-in">
+        <span class="section-label">Career</span>
+        <h2 class="section-title">Professional Experience</h2>
+      </div>
 
       <div class="timeline">
 
         <div class="timeline-item fade-in">
-          <div class="timeline-marker"></div>
-          <div class="timeline-content">
+          <div class="timeline-marker"><div class="marker-pulse"></div></div>
+          <div class="timeline-content glass">
             <div class="timeline-date">Apr 2025 – Jun 2025</div>
             <h3>MERN Full Stack Developer</h3>
-            <h4>Altruisty Innovation Pvt Ltd.</h4>
+            <h4><i class="fas fa-building"></i> Altruisty Innovation Pvt Ltd.</h4>
             <p>Developed responsive web modules with seamless REST API integration for smooth user experience. Handled database operations and implemented complete full-stack workflows using modern MERN development practices.</p>
-            <a href="https://drive.google.com/file/d/1A0TwUIXMUIL9184or7y8ly2IsI09ue51/view?usp=drive_link" target="_blank" class="cert-link-btn">
+            <div class="timeline-tech">
+              <span>MERN</span><span>REST API</span><span>MongoDB</span><span>React</span>
+            </div>
+            <a href="https://drive.google.com/file/d/1A0TwUIXMUIL9184or7y8ly2IsI09ue51/view?usp=drive_link" target="_blank" rel="noopener" class="cert-link-btn">
               <i class="fas fa-certificate"></i> View Certificate
             </a>
           </div>
         </div>
 
         <div class="timeline-item fade-in">
-          <div class="timeline-marker"></div>
-          <div class="timeline-content">
+          <div class="timeline-marker"><div class="marker-pulse"></div></div>
+          <div class="timeline-content glass">
             <div class="timeline-date">Jun 2025 – Jul 2025</div>
             <h3>Python Full Stack Developer</h3>
-            <h4>Wibits Web Solutions LLP</h4>
+            <h4><i class="fas fa-building"></i> Wibits Web Solutions LLP</h4>
             <p>Created responsive web modules with seamless API integration. Managed database operations and implemented full-stack workflows using modern development practices.</p>
-            <a href="https://drive.google.com/file/d/1dMcrEtNT-Zxdkj_25IS8QkuWPrpwqiVE/view?usp=drive_link" target="_blank" class="cert-link-btn">
+            <div class="timeline-tech">
+              <span>Python</span><span>Flask</span><span>REST API</span><span>MySQL</span>
+            </div>
+            <a href="https://drive.google.com/file/d/1dMcrEtNT-Zxdkj_25IS8QkuWPrpwqiVE/view?usp=drive_link" target="_blank" rel="noopener" class="cert-link-btn">
               <i class="fas fa-certificate"></i> View Certificate
             </a>
           </div>
         </div>
 
         <div class="timeline-item fade-in">
-          <div class="timeline-marker"></div>
-          <div class="timeline-content">
+          <div class="timeline-marker"><div class="marker-pulse"></div></div>
+          <div class="timeline-content glass">
             <div class="timeline-date">Sep 2025 – Nov 2025</div>
             <h3>Python Backend Developer Intern</h3>
-            <h4>Infosys</h4>
+            <h4><i class="fas fa-building"></i> Infosys</h4>
             <p>Developed backend logic systems utilizing multithreading for efficient processing. Implemented rule-based processing engines and text handling systems for large-scale data operations.</p>
-            <a href="https://drive.google.com/file/d/1sCp3ix43r0YXeF67_4j6DJOjeM2GC5aL/view?usp=drive_link" target="_blank" class="cert-link-btn">
+            <div class="timeline-tech">
+              <span>Python</span><span>Multithreading</span><span>Backend</span><span>Data Processing</span>
+            </div>
+            <a href="https://drive.google.com/file/d/1sCp3ix43r0YXeF67_4j6DJOjeM2GC5aL/view?usp=drive_link" target="_blank" rel="noopener" class="cert-link-btn">
               <i class="fas fa-certificate"></i> View Certificate
             </a>
           </div>
         </div>
 
-      </div>
-
-      <div class="certifications fade-in">
-        <h3>Certifications</h3>
-        <div class="cert-grid">
-
-          <div class="cert-item">
-            <i class="fas fa-certificate"></i>
-            <div class="cert-info">
-              <h4>Python Foundation Certification</h4>
-              <p>Infosys Springboard – 2025</p>
-              <a href="https://drive.google.com/file/d/1ZgHhANdP4WiAovLknw_vWwvM-3xpOeQd/view?usp=drive_link" target="_blank" class="cert-view-btn">
-                <i class="fas fa-external-link-alt"></i> View Certificate
-              </a>
-            </div>
-          </div>
-
-          <div class="cert-item">
-            <i class="fas fa-certificate"></i>
-            <div class="cert-info">
-              <h4>Java Foundation Certification</h4>
-              <p>Infosys Springboard – 2026</p>
-              <a href="https://drive.google.com/file/d/1H3GGQRTieuldxZ45QxdLZlTFPn3uXtft/view?usp=drive_link" target="_blank" class="cert-view-btn">
-                <i class="fas fa-external-link-alt"></i> View Certificate
-              </a>
-            </div>
-          </div>
-
-          <div class="cert-item">
-            <i class="fas fa-certificate"></i>
-            <div class="cert-info">
-              <h4>Acquiring Data</h4>
-              <p>nasscom – 2023</p>
-              <a href="https://drive.google.com/file/d/1bmYsGAKUsEi9S097O3ac0Rrp3oMoxcBh/view?usp=drive_link" target="_blank" class="cert-view-btn">
-                <i class="fas fa-external-link-alt"></i> View Certificate
-              </a>
-            </div>
-          </div>
-
-          <div class="cert-item">
-            <i class="fas fa-certificate"></i>
-            <div class="cert-info">
-              <h4>TATA Consultancy Service National Qualifier Test (80%)</h4>
-              <p>TCS Ion – 2026</p>
-              <a href="https://drive.google.com/file/d/1xSimyAXBJXC1USTTMSld2uBqcig4kxbZ/view?usp=drive_link" target="_blank" class="cert-view-btn">
-                <i class="fas fa-external-link-alt"></i> View Certificate
-              </a>
-            </div>
-          </div>
-
-          <div class="cert-item">
-            <i class="fas fa-certificate"></i>
-            <div class="cert-info">
-              <h4>UiPath Developer Associate Exam Certification (93%)</h4>
-              <p>UiPath – 2026</p>
-              <a href="https://drive.google.com/file/d/1LwdDhum2Ck6B0ox-HVkbiSx6yjF9Vyuo/view?usp=sharing" target="_blank" class="cert-view-btn">
-                <i class="fas fa-external-link-alt"></i> View Certificate
-              </a>
-            </div>
-          </div>
-
-          <div class="cert-item">
-            <i class="fas fa-certificate"></i>
-            <div class="cert-info">
-              <h4>Java Developer Certification</h4>
-              <p>Infosys Springboard – 2026</p>
-              <a href="https://drive.google.com/file/d/1OzaoOWfkO4hlUoJIY7Fek7ELpjQaftKN/view?usp=drive_link" target="_blank" class="cert-view-btn">
-                <i class="fas fa-external-link-alt"></i> View Certificate
-              </a>
-            </div>
-          </div>
-
-        </div>
       </div>
     </div>
   </section>
 
-  <!-- ==================== CONTACT — Pure Frontend ==================== -->
+  <!-- ==================== CERTIFICATES ==================== -->
+  <section id="certificates" class="certificates-section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Achievements</span>
+        <h2 class="section-title">Certifications</h2>
+      </div>
+      <div class="cert-grid-premium">
+
+        <div class="cert-card glass fade-in">
+          <div class="cert-card-icon"><i class="fas fa-award"></i></div>
+          <div class="cert-card-body">
+            <h4>Python Foundation Certification</h4>
+            <p class="cert-provider">Infosys Springboard</p>
+            <p class="cert-date">Issued 2025</p>
+            <a href="https://drive.google.com/file/d/1ZgHhANdP4WiAovLknw_vWwvM-3xpOeQd/view?usp=drive_link" target="_blank" rel="noopener" class="cert-view-btn"><i class="fas fa-external-link-alt"></i> View Credential</a>
+          </div>
+        </div>
+
+        <div class="cert-card glass fade-in">
+          <div class="cert-card-icon"><i class="fas fa-award"></i></div>
+          <div class="cert-card-body">
+            <h4>Java Foundation Certification</h4>
+            <p class="cert-provider">Infosys Springboard</p>
+            <p class="cert-date">Issued 2026</p>
+            <a href="https://drive.google.com/file/d/1H3GGQRTieuldxZ45QxdLZlTFPn3uXtft/view?usp=drive_link" target="_blank" rel="noopener" class="cert-view-btn"><i class="fas fa-external-link-alt"></i> View Credential</a>
+          </div>
+        </div>
+
+        <div class="cert-card glass fade-in">
+          <div class="cert-card-icon"><i class="fas fa-award"></i></div>
+          <div class="cert-card-body">
+            <h4>Acquiring Data</h4>
+            <p class="cert-provider">nasscom</p>
+            <p class="cert-date">Issued 2023</p>
+            <a href="https://drive.google.com/file/d/1bmYsGAKUsEi9S097O3ac0Rrp3oMoxcBh/view?usp=drive_link" target="_blank" rel="noopener" class="cert-view-btn"><i class="fas fa-external-link-alt"></i> View Credential</a>
+          </div>
+        </div>
+
+        <div class="cert-card glass fade-in">
+          <div class="cert-card-icon"><i class="fas fa-award"></i></div>
+          <div class="cert-card-body">
+            <h4>TATA Consultancy Service National Qualifier Test (80%)</h4>
+            <p class="cert-provider">TCS Ion</p>
+            <p class="cert-date">Issued 2026</p>
+            <a href="https://drive.google.com/file/d/1xSimyAXBJXC1USTTMSld2uBqcig4kxbZ/view?usp=drive_link" target="_blank" rel="noopener" class="cert-view-btn"><i class="fas fa-external-link-alt"></i> View Credential</a>
+          </div>
+        </div>
+
+        <div class="cert-card glass fade-in">
+          <div class="cert-card-icon"><i class="fas fa-award"></i></div>
+          <div class="cert-card-body">
+            <h4>UiPath Developer Associate Exam Certification (93%)</h4>
+            <p class="cert-provider">UiPath</p>
+            <p class="cert-date">Issued 2026</p>
+            <a href="https://drive.google.com/file/d/1LwdDhum2Ck6B0ox-HVkbiSx6yjF9Vyuo/view?usp=sharing" target="_blank" rel="noopener" class="cert-view-btn"><i class="fas fa-external-link-alt"></i> View Credential</a>
+          </div>
+        </div>
+
+        <div class="cert-card glass fade-in">
+          <div class="cert-card-icon"><i class="fas fa-award"></i></div>
+          <div class="cert-card-body">
+            <h4>Java Developer Certification</h4>
+            <p class="cert-provider">Infosys Springboard</p>
+            <p class="cert-date">Issued 2026</p>
+            <a href="https://drive.google.com/file/d/1OzaoOWfkO4hlUoJIY7Fek7ELpjQaftKN/view?usp=drive_link" target="_blank" rel="noopener" class="cert-view-btn"><i class="fas fa-external-link-alt"></i> View Credential</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CONTACT ==================== -->
   <section id="contact" class="contact-section">
     <div class="container">
-      <h2 class="section-title fade-in">Let's Connect</h2>
+      <div class="section-header fade-in">
+        <span class="section-label">Connect</span>
+        <h2 class="section-title">Let's Connect</h2>
+      </div>
 
-      <!-- Availability banner -->
-      <div class="availability-banner fade-in">
+      <div class="availability-banner fade-in glass">
         <span class="avail-dot"></span>
         <span>Open to Internships &amp; Entry-Level Opportunities — <strong>Available</strong></span>
       </div>
 
       <div class="contact-content">
-
-        <!-- Left: contact details + links -->
         <div class="contact-info fade-in">
-          <h3>Get In Touch</h3>
-          <p>I'm actively seeking opportunities in Java / Backend development. Feel free to reach out directly — I typically respond within 24 hours.</p>
+          <p class="contact-intro">I'm actively seeking opportunities in Java / Backend development. Reach out via email, LinkedIn, or the links below — I typically respond within 24 hours.</p>
 
-          <div class="contact-details">
-            <div class="contact-item">
-              <i class="fas fa-envelope"></i>
-              <div>
-                <h4>Email</h4>
-                <a href="mailto:devajeshurun57@gmail.com">devajeshurun57@gmail.com</a>
-              </div>
+          <div class="social-links contact-social">
+            <a href="mailto:devajeshurun57@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+            <a href="https://github.com/DevaJeshurun" target="_blank" rel="noopener" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/deva-jeshurun-aa493a306" target="_blank" rel="noopener" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://leetcode.com/u/deva_jeshurun/" target="_blank" rel="noopener" title="LeetCode"><i class="fas fa-code"></i></a>
+            <a href="https://www.geeksforgeeks.org/profile/devajeshurun?tab=activity" target="_blank" rel="noopener" title="GeeksforGeeks"><i class="fas fa-laptop-code"></i></a>
+            <a href="#" title="Resume" id="contactResumeBtn"><i class="fas fa-file-pdf"></i></a>
+          </div>
+        </div>
+
+        <div class="contact-cards fade-in">
+          <div class="contact-card glass" onclick="copyToClipboard('devajeshurun57@gmail.com', this)" role="button" tabindex="0">
+            <div class="cc-icon"><i class="fas fa-envelope"></i></div>
+            <div class="cc-body">
+              <h4>Send an Email</h4>
+              <p>devajeshurun57@gmail.com</p>
+              <span class="cc-action">Click to copy address</span>
             </div>
+            <i class="fas fa-copy cc-copy-icon"></i>
+          </div>
+
+          <a class="contact-card glass" href="https://linkedin.com/in/deva-jeshurun-aa493a306" target="_blank" rel="noopener">
+            <div class="cc-icon cc-linkedin"><i class="fab fa-linkedin"></i></div>
+            <div class="cc-body">
+              <h4>Connect on LinkedIn</h4>
+              <p>linkedin.com/in/deva-jeshurun-aa493a306</p>
+              <span class="cc-action">Opens in new tab ↗</span>
+            </div>
+          </a>
+
+          <a class="contact-card glass" href="https://github.com/DevaJeshurun" target="_blank" rel="noopener">
+            <div class="cc-icon cc-github"><i class="fab fa-github"></i></div>
+            <div class="cc-body">
+              <h4>View GitHub Profile</h4>
+              <p>github.com/DevaJeshurun</p>
+              <span class="cc-action">See all repositories ↗</span>
+            </div>
+          </a>
+
+          <div class="contact-card glass" id="resumeCard" onclick="triggerResumeDownload()" role="button" tabindex="0">
+            <div class="cc-icon cc-resume"><i class="fas fa-file-pdf"></i></div>
+            <div class="cc-body">
+              <h4>Download Resume</h4>
+              <p>Latest CV — PDF format</p>
+              <span class="cc-action">Click to download</span>
+            </div>
+            <i class="fas fa-download cc-copy-icon"></i>
+          </div>
+
+          <div class="contact-detail-card glass">
             <div class="contact-item">
               <i class="fas fa-phone"></i>
               <div>
@@ -401,75 +707,29 @@
               <div><h4>Location</h4><p>Chennai, Tamil Nadu, India</p></div>
             </div>
           </div>
-
-          <div class="social-links">
-            <a href="https://github.com/DevaJeshurun" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-            <a href="https://linkedin.com/in/deva-jeshurun-aa493a306" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-            <a href="https://leetcode.com/u/deva_jeshurun/" target="_blank" title="LeetCode"><i class="fas fa-code"></i></a>
-            <a href="https://www.geeksforgeeks.org/profile/devajeshurun?tab=activity" target="_blank" title="GeeksforGeeks"><i class="fas fa-laptop-code"></i></a>
-          </div>
         </div>
+      </div>
 
-        <!-- Right: quick-contact cards (pure HTML/JS) -->
-        <div class="contact-cards fade-in">
-
-          <div class="contact-card" onclick="copyToClipboard('devajeshurun57@gmail.com', this)">
-            <div class="cc-icon"><i class="fas fa-envelope"></i></div>
-            <div class="cc-body">
-              <h4>Send an Email</h4>
-              <p>devajeshurun57@gmail.com</p>
-              <span class="cc-action">Click to copy address</span>
-            </div>
-            <i class="fas fa-copy cc-copy-icon"></i>
-          </div>
-
-          <a class="contact-card" href="https://linkedin.com/in/deva-jeshurun-aa493a306" target="_blank">
-            <div class="cc-icon cc-linkedin"><i class="fab fa-linkedin"></i></div>
-            <div class="cc-body">
-              <h4>Connect on LinkedIn</h4>
-              <p>linkedin.com/in/deva-jeshurun-aa493a306</p>
-              <span class="cc-action">Opens in new tab ↗</span>
-            </div>
-          </a>
-
-          <a class="contact-card" href="https://github.com/DevaJeshurun" target="_blank">
-            <div class="cc-icon cc-github"><i class="fab fa-github"></i></div>
-            <div class="cc-body">
-              <h4>View GitHub Profile</h4>
-              <p>github.com/DevaJeshurun</p>
-              <span class="cc-action">See all repositories ↗</span>
-            </div>
-          </a>
-
-          <div class="contact-card" id="resumeCard" onclick="triggerResumeDownload()">
-            <div class="cc-icon cc-resume"><i class="fas fa-file-pdf"></i></div>
-            <div class="cc-body">
-              <h4>Download Resume</h4>
-              <p>Latest CV — PDF format</p>
-              <span class="cc-action">Click to download</span>
-            </div>
-            <i class="fas fa-download cc-copy-icon"></i>
-          </div>
-
-        </div>
-      </div><!-- /.contact-content -->
-
-      <!-- Colophon / availability summary -->
       <div class="contact-footer fade-in">
         <div class="cf-item"><i class="fas fa-briefcase"></i><span>Open to <strong>Full-time &amp; Internship</strong> roles</span></div>
         <div class="cf-item"><i class="fas fa-map-marker-alt"></i><span><strong>On-site</strong> (Chennai) · <strong>Remote</strong> · <strong>Hybrid</strong></span></div>
         <div class="cf-item"><i class="fas fa-clock"></i><span>Available</span></div>
-        <div class="cf-item"><i class="fas fa-globe"></i><span>Open to <strong>relocation</strong> </span></div>
+        <div class="cf-item"><i class="fas fa-globe"></i><span>Open to <strong>relocation</strong></span></div>
       </div>
-
     </div>
   </section>
 
   <footer class="footer">
     <div class="container">
-      <p>&copy; 2026 Deva Jeshurun. Designed with passion.</p>
+      <p>&copy; 2026 Deva Jeshurun. Crafted with precision.</p>
     </div>
   </footer>
+
+  <button id="scrollTop" class="scroll-top" aria-label="Scroll to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <div class="cmd-hint" aria-hidden="true"><kbd>Ctrl</kbd> + <kbd>K</kbd></div>
 
   <script src="script.js"></script>
 </body>
